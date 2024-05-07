@@ -356,13 +356,14 @@ $(document).ready(function(){
                     var trackId = this.name;
                     var url = this.url;
                     var token = this.token;
+                    var uuid = this.uuid;
                     soundManager.setup({
                 // where to find flash audio SWFs, as needed
                     url: '/.',
                     onready: function() {
                       soundManager.createSound({
                         id: trackId, // optional: provide your own unique id
-                        url: url + sid + token, multiShot: false,
+                        url: uuid ? `https://funkwhale.it/api/v1/stream/${ uuid }/` : (url + sid + token), multiShot: false,
                         onload: function() {
                           if( this.readyState ===3 ) {
                               soundDuration = this.duration;
